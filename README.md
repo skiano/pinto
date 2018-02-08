@@ -23,7 +23,7 @@ Sometimes I want something less intense, and for really small things I can get a
 ## installation
 
 ```bash
-npm install pinto --save-dev
+$ npm install pinto --save-dev
 ```
 
 ## usage
@@ -42,6 +42,7 @@ Add something like the following to your `package.json`
 Then create `src/index.html`
 
 ```html
+<!DOCTYPE html>
 <html>
   <head>
     <title>My super cool page!</title>
@@ -55,7 +56,7 @@ Then create `src/index.html`
 
 Then create `src/index.css`
 
-```html
+```css
 body {
   border: 1px solid red;
 }
@@ -63,12 +64,25 @@ body {
 
 Then create `src/index.js`
 
-```html
+```javascript
 const hello = () => 'hello'
 console.log(hello())
 ```
 
-_NOTE_ `"NODE_ENV=production` is what triggers minification.
+Then run
+
+```bash
+$ npm run build
+```
+
+and you should get a new file `dist/index.html` that looks like
+
+```html
+<!DOCTYPE html> <html> <head> <title>My super cool page!</title> <style type="text/css">body{border:1px solid red}</style> </head> <body> <script type="text/javascript">var hello=function(){return"hello"};console.log(hello());</script> </body> </html> 
+```
+
+
+
 
 ## configuration
 `pinto.config.js`
