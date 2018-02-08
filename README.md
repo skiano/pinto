@@ -1,7 +1,18 @@
 # pinto
 
-Sometimes all I want to build is a simple static HTML page with a bit of JavaScript and CSS, but I still want to use a bit of templating, and I still want to minify everything and take advantage of fancy javascript and scss. So I made this tool.
+A super minimal build and dev tool for little HTML projects, for when you have a simple single page and you want a bit of javascript and css.
 
 ## what it does
 
-pinto combines a single HTML file (mustache template), a single JS file, and a single CSS file into a completely static page.
+Pinto creates a completely static html page from the following:
+
+* an HTML file
+* a single CSS file
+* a single JS file
+* a template data file
+
+And exposes the template data and the transformed css and js to the html file via mustache.
+
+## why not webpack
+
+Sometimes I want something less intense, and for really small things I can get away with something small and fast.
