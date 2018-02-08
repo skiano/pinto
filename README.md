@@ -28,60 +28,83 @@ $ npm install pinto --save-dev
 
 ## usage
 
-Add something like the following to your `package.json`
+Assuming you use the default configuration...
 
+Your project folder might look like
+
+```
+package.json
+src/
+  index.html
+  index.css
+  index.js
+  templateData.js
+```
+
+...and assuming the following is the content of those files:
+
+#### `package.json`
 ```json
 {
+  "name": "my-cool-project",
+  "version": "1.0.0",
   "scripts": {
     "dev": "pinto dev",
     "build": "NODE_ENV=production pinto build"
+  },
+  "dependencies": {
+    "pinto": "^1.0.0"
   }
 }
 ```
 
-Then create `src/index.html`
-
+#### `src/index.html`
 ```mustache
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My super cool page!</title>
+    <title>{{data.title}}</title>
     <style type="text/css">{{{css}}}</style>
   </head>
   <body>
+    <h1>{{data.heading}}</h1>
     <script type="text/javascript">{{{js}}}</script>
   </body>
 </html>
 ```
 
-Then create `src/index.css`
-
-```css
-body {
-  border: 1px solid red;
+#### `src/templateData.js`
+```js
+module.exports = {
+  title: 'My super cool page!',
+  heading: 'Howdy',
 }
 ```
 
-Then create `src/index.js`
+#### `src/index.css`
+```css
+h1 {
+  color: red;
+}
+```
 
+#### `src/index.js`
 ```javascript
 const hello = () => 'hello'
 console.log(hello())
 ```
 
-Then run
+...you could run:
 
 ```bash
 $ npm run build
 ```
 
-and you should get a new file `dist/index.html` that looks like
+...and you would get a new file `dist/index.html` that looks like:
 
 ```html
-<!DOCTYPE html> <html> <head> <title>My super cool page!</title> <style type="text/css">body{border:1px solid red}</style> </head> <body> <script type="text/javascript">var hello=function(){return"hello"};console.log(hello());</script> </body> </html> 
+<!DOCTYPE html> <html> <head> <title>My super cool page!</title> <style type="text/css">body{border:1px solid red}</style> </head> <body> <h1>Howdy</h1> <script type="text/javascript">var hello=function(){return"hello"};console.log(hello());</script> </body> </html> 
 ```
-
-
 
 
 ## configuration
