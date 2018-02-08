@@ -2,7 +2,7 @@
 
 A minimal build and dev tool for really tiny HTML projects.
 
-For example, sometimes I want a single page with a tiny bit of CSS and JS, but I still want to transpile the JS and autoprefix the css.
+For example, sometimes I want a single page with a tiny bit of CSS and JS, but I still want to transpile the JS, autoprefix the css, and minify the HTML.
 
 ## what it does
 
@@ -28,7 +28,7 @@ npm install pinto --save-dev
 
 ## usage
 
-In your package json
+Add something like the following to your `package.json`
 
 ```json
 {
@@ -37,6 +37,35 @@ In your package json
     "build": "NODE_ENV=production pinto build"
   }
 }
+```
+
+Then create `src/index.html`
+
+```html
+<html>
+  <head>
+    <title>My super cool page!</title>
+    <style type="text/css">{{{css}}}</style>
+  </head>
+  <body>
+    <script type="text/javascript">{{{js}}}</script>
+  </body>
+</html>
+```
+
+Then create `src/index.css`
+
+```html
+body {
+  border: 1px solid red;
+}
+```
+
+Then create `src/index.js`
+
+```html
+const hello = () => 'hello'
+console.log(hello())
 ```
 
 _NOTE_ `"NODE_ENV=production` is what triggers minification.
