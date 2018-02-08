@@ -19,3 +19,41 @@ the template data and the transformed css and js.
 ## why not webpack
 
 Sometimes I want something less intense, and for really small things I can get away with something small and fast.
+
+## installation
+
+```bash
+npm install pinto --save-dev
+```
+
+## usage
+
+In your package json
+
+```json
+{
+  "scripts": {
+    "dev": "pinto dev",
+    "build": "pinto build"
+  }
+}
+```
+
+## configuration
+`pinto.config.js`
+
+This is what the defaults are set too
+
+```javascript
+module.exports = {
+  port: 3000,
+  dist: 'dist',
+  output: 'index.html',
+  templateData: 'src/templateData.js',
+  src: {
+    html: 'src/index.html',
+    css: 'src/index.css',
+    js: 'src/index.js',
+  },
+}
+```
