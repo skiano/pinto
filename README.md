@@ -34,10 +34,12 @@ In your package json
 {
   "scripts": {
     "dev": "pinto dev",
-    "build": "pinto build"
+    "build": "NODE_ENV=production pinto build"
   }
 }
 ```
+
+_NOTE_ `"NODE_ENV=production` is what triggers minification.
 
 ## configuration
 `pinto.config.js`
