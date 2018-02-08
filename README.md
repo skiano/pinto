@@ -1,6 +1,8 @@
 # pinto
 
-A super minimal build and dev tool for little HTML projects, for when you have a simple single page and you want a bit of javascript and css.
+A minimal build and dev tool for really tiny HTML projects.
+
+For example, sometimes I want a single page with a tiny bit of CSS and JS, but I still want to transpile the JS and autoprefix the css.
 
 ## what it does
 
@@ -11,7 +13,8 @@ Pinto creates a completely static html page from the following:
 * a single JS file
 * a template data file
 
-And exposes the template data and the transformed css and js to the html file via mustache.
+The HTML is treated as a mustache template, which recieves 
+the template data and the transformed css and js.
 
 ## why not webpack
 
