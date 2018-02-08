@@ -41,7 +41,7 @@ Add something like the following to your `package.json`
 
 Then create `src/index.html`
 
-```html
+```mustache
 <!DOCTYPE html>
 <html>
   <head>
