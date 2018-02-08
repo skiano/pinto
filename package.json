@@ -27,6 +27,7 @@
   "dependencies": {
     "autoprefixer": "^7.2.5",
     "buble": "^0.18.0",
+    "chalk": "^2.3.0",
     "chokidar": "^2.0.0",
     "connect": "^3.6.5",
     "cssnano": "^3.10.0",

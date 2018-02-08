@@ -1,4 +1,5 @@
 const fs = require('fs')
+const chalk = require('chalk')
 const buble = require('buble')
 const hogan = require("hogan.js")
 const postcss = require('postcss')
@@ -55,32 +56,35 @@ const createHTML = (html, data) => {
   })
 }
 
+const createData = (data) => (typeof data === 'function')
+  ? data
+  : () => data
+
 const build = (config) => {
-  console.log('build!', config)
-  // const start = new Date()
-  //
-  // Promise.all([
-  //   readFile(config.src.html),
-  //   readFile(config.src.css),
-  //   readFile(config.src.js),
-  // ]).then(([html, rawCss, rawJs]) => (
-  //   Promise.all([
-  //     createCss(rawCss),
-  //     createJs(rawJs),
-  //   ]).then(([css, js]) => (
-  //     Promise.resolve(config.createData()).then(data => (
-  //       writeFile(config.output, createHTML(html, {
-  //         js,
-  //         css,
-  //         data,
-  //       }))
-  //     ))
-  //   ))
-  // )).then(() => {
-  //   console.log(`built: ${new Date() - start}ms`)
-  // }).catch(err => {
-  //   console.error(err)
-  // })
+  const start = new Date()
+
+  return Promise.all([
+    readFile(config.src.html),
+    readFile(config.src.css),
+    readFile(config.src.js),
+  ]).then(([html, rawCss, rawJs]) => (
+    Promise.all([
+      createCss(rawCss),
+      createJs(rawJs),
+    ]).then(([css, js]) => (
+      Promise.resolve(createData(config.templateData)).then(data => (
+        writeFile(config.output, createHTML(html, {
+          js,
+          css,
+          data,
+        }))
+      ))
+    ))
+  )).then(() => {
+    console.log('built', chalk.cyan(`${new Date() - start}ms`))
+  }).catch(err => {
+    console.error(err)
+  })
 }
 
 module.exports = build

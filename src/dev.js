@@ -1,5 +1,6 @@
 const path = require('path')
 const http = require('http')
+const chalk = require('chalk')
 const connect = require('connect')
 const serveStatic = require('serve-static')
 const build = require('./build')
@@ -10,12 +11,11 @@ const createDevServer = (config) => {
   app.use(serveStatic(config.dist, { extensions: ['html'] }))
 
   http.createServer(app).listen(config.port, () => {
-    console.log(`serving http://localhost:${config.port}`)
+    console.log(`serving`, chalk.green(`http://localhost:${config.port}`))
   })
 }
 
 const dev = (config) => {
-  // 1. setup a watcher
   const watcher = require('chokidar').watch(config.root, {
     ignored: [
       /(^|[\/\\])\../,
@@ -24,14 +24,9 @@ const dev = (config) => {
     ]
   })
 
-  // 2. when it is ready tie it to the build
   watcher.on('ready', () => { watcher.on('all', () => build(config)) })
 
-  // 3. perform initial build
-  build(config)
-
-  // 4. serve the build from dist
-  createDevServer(config)
+  build(config).then(() => createDevServer(config))
 }
 
 module.exports = dev
