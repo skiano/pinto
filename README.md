@@ -60,7 +60,7 @@ Given the following:
 </html>
 ```
 
-#### `src/templateData.js`
+#### `src/data.js`
 ```js
 module.exports = {
   title: 'My super cool page!',
