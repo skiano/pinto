@@ -16,14 +16,14 @@ $ npx pinto dev   # starts a dev server
 $ npx pinto build # builds a static page
 ```
 
-By default, pinto applies optimizations only on build. You can override this behavior like so:
+By default, pinto applies optimizations only on build, but you can override that.
 
 ```
 $ npx pinto dev --optimize
 $ npx pinto build --optimize=false
 ```
 
-If you want, you can use the excellent [`now`](https://zeit.co/now) to deploy your project to a live url
+If you want, you can use the excellent [`now`](https://zeit.co/now) to share your project with the world!
 
 ```
 $ npx pinto build && cd dist && npx now
@@ -42,6 +42,8 @@ The HTML is treated as a mustache template, which recieves
 the template data and the transformed css and js.
 
 ## What it does in detail
+
+Given the following:
 
 #### `src/index.html`
 ```mustache
