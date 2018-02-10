@@ -12,6 +12,13 @@ $ npx pinto dev   # starts a dev server
 $ npx pinto build # builds a static page
 ```
 
+By default, pinto applies optimizations only on build. You can override this behavior like so:
+
+```
+$ npx pinto dev --optimize
+$ npx pinto build --optimize=false
+```
+
 ## what it does
 
 Pinto creates a completely static html page from the following:
