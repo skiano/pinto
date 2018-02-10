@@ -62,11 +62,11 @@ Given the following:
 </html>
 ```
 
-#### `src/data.js`
+#### `src/data.json`
 ```js
-module.exports = {
-  title: 'My super cool page!',
-  heading: 'Howdy',
+{
+  "title": "My super cool page!",
+  "heading": "Howdy"
 }
 ```
 
