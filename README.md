@@ -7,9 +7,9 @@ For example, sometimes I want a single page with a tiny bit of CSS and JS, but I
 ## quick start
 
 ```
-$ mkdir my=project && cd myproject
-$ npx pinto init
-$ npx pinto dev
+$ npx pinto init  # scaffolds the project
+$ npx pinto dev   # starts a dev server
+$ npx pinto build # builds a static page
 ```
 
 ## what it does
