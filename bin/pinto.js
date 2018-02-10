@@ -47,4 +47,6 @@ switch (COMMAND) {
   case 'dev':
     require('../src/dev')(config)
     break;
+  case 'init':
+    require('../src/init')()
 }

@@ -33,8 +33,10 @@
     "cssnano": "^3.10.0",
     "deepmerge": "^2.0.1",
     "es6-promisify": "^6.0.0",
+    "fs-extra": "^5.0.0",
     "hogan.js": "^3.0.2",
     "html-minifier": "^3.5.8",
+    "inquirer": "^5.1.0",
     "postcss": "^6.0.17",
     "serve-static": "^1.13.2",
     "uglify-js": "^3.3.9"
