@@ -1,6 +1,30 @@
 const fs = require('fs-extra')
 const path = require('path')
+const minimist = require('minimist')
 const deepmerge = require('deepmerge')
+
+const argv = minimist(process.argv.slice(2), {
+  alias: { o: 'optimize' },
+})
+
+const args = { command: argv._[0] }
+
+// special default based on command...
+// so you can still override, but it will be smart
+// look into if im just doing this wrong
+if (!argv.hasOwnProperty('optimize')) {
+  args.optimize = argv._[0] === 'build' ? true : false
+} else if (argv.optimize === 'false') {
+  args.optimize = false
+} else if (argv.optimize) {
+  args.optimize = true
+} else {
+  args.optimize = false
+}
+
+exports.args = args
+
+console.log(exports.args)
 
 exports.configFile = 'pinto.config'
 exports.projectRoot = process.cwd()

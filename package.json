@@ -32,11 +32,11 @@
     "chokidar": "^2.0.0",
     "connect": "^3.6.5",
     "cssnano": "^3.10.0",
-    "deepmerge": "^2.0.1",
     "fs-extra": "^5.0.0",
     "hogan.js": "^3.0.2",
     "html-minifier": "^3.5.8",
     "inquirer": "^5.1.0",
+    "minimist": "^1.2.0",
     "postcss": "^6.0.17",
     "uglify-js": "^3.3.9"
   }

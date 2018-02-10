@@ -1,11 +1,7 @@
 #! /usr/bin/env node
-const path = require('path')
-const chalk = require('chalk')
-const deepmerge = require('deepmerge')
+const { args } = require('../src/util')
 
-const COMMAND = process.argv.pop().toLowerCase()
-
-switch (COMMAND) {
+switch (args.command) {
   case 'build':
     require('../src/build')()
     break;

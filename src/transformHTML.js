@@ -1,10 +1,11 @@
 const hogan = require('hogan.js')
+const { args } = require('./util')
 
-module.exports = function createHTML(html, data, optimize) {
+module.exports = function createHTML(html, data) {
   const template = hogan.compile(html)
   const output = template.render(data)
 
-  if (!optimize) return output
+  if (!args.optimize) return output
 
   return require('html-minifier').minify(output, {
     collapseWhitespace: true,
