@@ -8,7 +8,9 @@ It’s somewhere between a JS fiddle and a mini static site generator.
 
 I just want less, and for really small things I can get away with it.
 
-## quick start
+## how do I use it?
+
+The easiest way is [`npx`](https://www.npmjs.com/package/npx) because it comes with `npm`.
 
 ```
 $ npx pinto init  # scaffolds the project
