@@ -1,5 +1,7 @@
 # pinto
 
+_IN PROGRESS... almost mvp_
+
 A minimal build and dev tool for really tiny HTML projects.
 
 It’s somewhere between a JS fiddle and a mini static site generator.
