@@ -41,7 +41,7 @@ Pinto creates a completely static html page from the following:
 The HTML is treated as a mustache template, which recieves 
 the template data and the transformed css and js.
 
-## What it does in detail
+## in detail
 
 Given the following:
 
@@ -84,31 +84,11 @@ console.log(hello())
 ...you could run:
 
 ```bash
-$ npm run build
+$ npx pinto build
 ```
 
 ...and you would get a new file `dist/index.html` that looks like:
 
 ```html
 <!DOCTYPE html> <html> <head> <title>My super cool page!</title> <style type="text/css">body{border:1px solid red}</style> </head> <body> <h1>Howdy</h1> <script type="text/javascript">var hello=function(){return"hello"};console.log(hello());</script> </body> </html> 
-```
-
-
-## configuration
-`pinto.config.js`
-
-This is what the defaults are set too
-
-```javascript
-module.exports = {
-  port: 3000,
-  dist: 'dist',
-  output: 'index.html',
-  templateData: 'src/templateData.js',
-  src: {
-    html: 'src/index.html',
-    css: 'src/index.css',
-    js: 'src/index.js',
-  },
-}
 ```
