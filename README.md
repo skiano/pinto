@@ -4,6 +4,14 @@ A minimal build and dev tool for really tiny HTML projects.
 
 For example, sometimes I want a single page with a tiny bit of CSS and JS, but I still want to transpile the JS, autoprefix the css, and minify the HTML.
 
+## quick start
+
+```
+$ mkdir my=project && cd myproject
+$ npx pinto init
+$ npx pinto dev
+```
+
 ## what it does
 
 Pinto creates a completely static html page from the following:
