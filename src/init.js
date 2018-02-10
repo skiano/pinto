@@ -1,78 +1,72 @@
 const path = require('path')
 const inquirer = require('inquirer')
-const deepmerge = require('deepmerge')
 const {
+  fromSrc,
   fromRoot,
+  configFile,
   forceWriteFile,
-  defaultConfig,
+  createConfig,
   createDefaultHTML,
   createDefaultCSS,
   createDefaultJS,
 } = require('./util')
 
-const stubHtml = (answers, config) => (
-  forceWriteFile(fromRoot(config.src.html), createDefaultHTML({
-    title: answers.packageName,
-    useData: answers.useTemplateData,
-  }))
+const stubHtml = (config) => (
+  forceWriteFile(fromSrc(config.src.html), createDefaultHTML(config))
 )
 
-const stubTemplateData = (answers, config) => (
-  answers.useTemplateData ? forceWriteFile(fromRoot(config.src.data), JSON.stringify({
-    title: answers.packageName,
-  }, null, 2)) : null
+const stubTemplateData = (config) => (
+  config.src.data && forceWriteFile(
+    fromSrc(config.src.data),
+    JSON.stringify({ title: 'pinto', heading: 'Hello Pinto!' }, null, 2)
+  )
 )
 
-const stubCSS = (answers, config) => (
-  forceWriteFile(fromRoot(config.src.css), createDefaultCSS())
+const stubCSS = (config) => (
+  forceWriteFile(fromSrc(config.src.css), createDefaultCSS())
 )
 
-const stubJS = (answers, config) => (
-  forceWriteFile(fromRoot(config.src.js), createDefaultJS())
+const stubJS = (config) => (
+  forceWriteFile(fromSrc(config.src.js), createDefaultJS())
 )
 
-const stubConfiguration = (answers, config) => (
-  forceWriteFile(fromRoot('pinto.config.json'), JSON.stringify(config, null, 2))
+const stubConfiguration = (config) => (
+  forceWriteFile(fromRoot(`${configFile}.json`), JSON.stringify(config, null, 2))
 )
 
 const init = () => (
   inquirer.prompt([
     {
       type: 'input',
-      message: 'package name',
-      name: 'packageName',
-      default: 'my-project',
-    },
-    {
-      type: 'input',
       message: 'port',
       name: 'port',
       default: 3000,
+      validate(v) {
+        return isNaN(v)
+          ? 'port must be a number'
+          : true
+      }
     },
     {
       type: 'confirm',
       message: 'include template data',
-      name: 'useTemplateData',
+      name: 'useData',
     },
-    // check if this is ok to build
+    // TODO: check if this is ok to build
+    // (ie is this going to overwrite any files)
   ]).then(answers => {
-    const config = deepmerge({}, defaultConfig, {})
-
-    // console.log('create package.json')
-    // console.log('create config')
-    // console.log('stub html')
-    // console.log('stub css')
-    // console.log('stub js')
-    // console.log('stub templateData')
+    const config = createConfig(answers)
 
     return Promise.all([
-      stubHtml(answers, defaultConfig),
-      stubCSS(answers, defaultConfig),
-      stubJS(answers, defaultConfig),
-      stubTemplateData(answers, defaultConfig)
-      stubConfiguration(answers, defaultConfig),
+      stubHtml(config),
+      stubCSS(config),
+      stubJS(config),
+      stubTemplateData(config),
+      stubConfiguration(config),
     ])
   })
-)
+).catch(err => {
+  console.error(err)
+})
 
 module.exports = init
