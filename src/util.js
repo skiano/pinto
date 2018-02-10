@@ -24,13 +24,23 @@ if (!argv.hasOwnProperty('optimize')) {
 
 exports.args = args
 
-console.log(exports.args)
-
 exports.configFile = 'pinto.config'
 exports.projectRoot = process.cwd()
 
 exports.fromRoot = (p) => path.resolve(exports.projectRoot, p)
 exports.fromSrc = (p) => path.resolve(exports.projectRoot, 'src', p)
+
+exports.createConfig = (config) => ({
+  port: parseInt(config.port),
+  dist: "dist",
+  output: "index.html",
+  src: {
+    data: config.useData ? "data.json" : null,
+    html: "index.html",
+    css: "index.css",
+    js: "index.js"
+  }
+})
 
 exports.loadConfig = () => {
   const c = require(path.resolve(exports.projectRoot, exports.configFile))
@@ -57,18 +67,6 @@ exports.forceWriteFile = (file, content) => (
     fs.writeFile(file, content)
   ))
 )
-
-exports.createConfig = (config) => ({
-  port: parseInt(config.port),
-  dist: "dist",
-  output: "index.html",
-  src: {
-    data: config.useData ? "data.js" : null,
-    html: "index.html",
-    css: "index.css",
-    js: "index.js"
-  }
-})
 
 exports.createDefaultHTML = (config) => `<!DOCTYPE html>
 <html>
