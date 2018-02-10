@@ -2,7 +2,11 @@
 
 A minimal build and dev tool for really tiny HTML projects.
 
-For example, sometimes I want a single page with a tiny bit of CSS and JS, but I still want to transpile the JS, autoprefix the css, and minify the HTML.
+It’s somewhere between a JS fiddle and a mini static site generator.
+
+## why not webpack
+
+I just want less, and for really small things I can get away with it.
 
 ## quick start
 
@@ -19,6 +23,12 @@ $ npx pinto dev --optimize
 $ npx pinto build --optimize=false
 ```
 
+If you want, you can use the excellent [`now`](https://zeit.co/now) to deploy your project to a live url
+
+```
+$ npx pinto build && cd dist && npx now
+```
+
 ## what it does
 
 Pinto creates a completely static html page from the following:
@@ -31,47 +41,7 @@ Pinto creates a completely static html page from the following:
 The HTML is treated as a mustache template, which recieves 
 the template data and the transformed css and js.
 
-## why not webpack
-
-Sometimes I want something less intense, and for really small things I can get away with something small and fast.
-
-## installation
-
-```bash
-$ npm install pinto --save-dev
-```
-
-## usage
-
-Assuming you use the default configuration...
-
-Your project folder might look like
-
-```
-package.json
-src/
-  index.html
-  index.css
-  index.js
-  templateData.js
-```
-
-...and assuming the following is the content of those files:
-
-#### `package.json`
-```json
-{
-  "name": "my-cool-project",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "pinto dev",
-    "build": "NODE_ENV=production pinto build"
-  },
-  "dependencies": {
-    "pinto": "^1.0.0"
-  }
-}
-```
+## What it does in detail
 
 #### `src/index.html`
 ```mustache
