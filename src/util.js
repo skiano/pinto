@@ -52,11 +52,11 @@ exports.createDefaultHTML = (config) => `<!DOCTYPE html>
     <title>${config.useData ? '{{data.title}}' : 'Hello Pinto'}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charSet="utf-8"/>
-    <style>{{css}}</style>
+    <style>{{{css}}}</style>
   </head>
   <body>
     <h1>${config.useData ? '{{data.heading}}' : 'Hello Pinto'}</h1>
-    <script type="text/javascript">{{js}}</script>
+    <script type="text/javascript">{{{js}}}</script>
   </body>
 </html>
 `
