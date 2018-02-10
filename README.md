@@ -1,7 +1,5 @@
 # pinto
 
-_IN PROGRESS... almost mvp_
-
 A minimal build and dev tool for really tiny HTML projects.
 
 It’s somewhere between a JS fiddle and a mini static site generator.
@@ -40,7 +38,7 @@ Pinto creates a completely static html page from the following:
 * a single JS file
 * a template data file
 
-The HTML is treated as a mustache template, which recieves 
+The HTML is treated as a mustache template, which recieves
 the template data and the transformed css and js.
 
 ## in detail
@@ -92,5 +90,5 @@ $ npx pinto build
 ...and you would get a new file `dist/index.html` that looks like:
 
 ```html
-<!DOCTYPE html> <html> <head> <title>My super cool page!</title> <style type="text/css">body{border:1px solid red}</style> </head> <body> <h1>Howdy</h1> <script type="text/javascript">var hello=function(){return"hello"};console.log(hello());</script> </body> </html> 
+<!DOCTYPE html> <html> <head> <title>My super cool page!</title> <style type="text/css">body{border:1px solid red}</style> </head> <body> <h1>Howdy</h1> <script type="text/javascript">var hello=function(){return"hello"};console.log(hello());</script> </body> </html>
 ```
