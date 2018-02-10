@@ -4,7 +4,7 @@ A minimal build and dev tool for really tiny HTML projects.
 
 It’s somewhere between a JS fiddle and a mini static site generator.
 
-## why not webpack
+## why not webpack?
 
 I just want less, and for really small things I can get away with it.
 
@@ -29,7 +29,7 @@ If you want, you can use the excellent [`now`](https://zeit.co/now) to share you
 $ npx pinto build && cd dist && npx now
 ```
 
-## what it does
+## what it does?
 
 Pinto creates a completely static html page from the following:
 
@@ -41,7 +41,7 @@ Pinto creates a completely static html page from the following:
 The HTML is treated as a mustache template, which recieves
 the template data and the transformed css and js.
 
-## in detail
+## what does scaffolding create?
 
 Scaffolding your project will create something like the following
 
