@@ -78,7 +78,7 @@ src/index.html
     <html>
       <head>
         <title>{{data.title}}</title>
-        <style type="text/css">{{{css}}}</style>
+        <style>{{{css}}}</style>
       </head>
       <body>
         <h1>{{data.heading}}</h1>
