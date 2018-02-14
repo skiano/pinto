@@ -20,7 +20,7 @@ If you are interested in a nice layer on top of webpack, there are already great
 
 ## why not webpack?
 
-I just want less, and for really small things I can get away with it. Plus it's fast :)
+For really small projects I want small and fast :)
 
 ## how do I use it?
 
