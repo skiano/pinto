@@ -4,11 +4,10 @@
 
 ## what is it?
 
-A minimal build and dev tool for really tiny HTML projects.
+A minimal build and dev tool for really tiny HTML projects, such as:
 
-Potential applications
 * quick experiments (easy to build and deploy)
-* working with students (simple environment that supports es6 and autoprefixing)
+* student projects (simple environment that supports es6 and autoprefixing)
 * super small sites (portfolio pages, one of marketing pages, etc)
 
 ## why not webpack?
