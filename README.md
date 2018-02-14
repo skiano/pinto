@@ -21,7 +21,7 @@ I just want less, and for really small things I can get away with it. Plus it's 
 The easiest way is [`npx`](https://www.npmjs.com/package/npx) because it comes with `npm`.
 
 ```
-$ npx pinto init  # scaffolds the project
+$ npx pinto init  # scaffolds the project in current directory
 $ npx pinto dev   # starts a dev server
 $ npx pinto build # builds a static page
 ```
