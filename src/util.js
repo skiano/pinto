@@ -70,13 +70,13 @@ exports.forceWriteFile = (file, content) => (
 exports.createDefaultHTML = (config) => `<!DOCTYPE html>
 <html>
   <head>
-    <title>${config.useData ? '{{data.title}}' : 'Hello Pinto'}</title>
+    <title>${config.src.data ? '{{data.title}}' : 'Hello Pinto'}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charSet="utf-8"/>
     <style>{{{css}}}</style>
   </head>
   <body>
-    <h1>${config.useData ? '{{data.heading}}' : 'Hello Pinto'}</h1>
+    <h1>${config.src.data ? '{{data.heading}}' : 'Hello Pinto'}</h1>
     <script type="text/javascript">{{{js}}}</script>
   </body>
 </html>
