@@ -20,7 +20,7 @@ I just want less, and for really small things I can get away with it. Plus it's 
 
 The easiest way is [`npx`](https://www.npmjs.com/package/npx) because it comes with `npm`.
 
-```
+```bash
 $ npx pinto init  # scaffolds the project in current directory
 $ npx pinto dev   # starts a dev server
 $ npx pinto build # builds a static page
@@ -28,7 +28,7 @@ $ npx pinto build # builds a static page
 
 By default, pinto applies optimizations only on build, but you can override that.
 
-```
+```bash
 $ npx pinto dev --optimize
 $ npx pinto build --optimize=false
 ```
