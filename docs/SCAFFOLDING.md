@@ -52,4 +52,4 @@ And `npx pinto build` would create a new file `dist/index.html` that looks like:
 
 ----
 
-[Back to docs](../README.md)
+[Back to docs](../README.md#what-it-does)
