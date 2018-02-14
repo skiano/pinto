@@ -102,7 +102,7 @@ And `npx pinto build` would create a new file `dist/index.html` that looks like:
 ## What about 3rd party code?
 
 Because you are limited to one JS file, you cannot import any 3rd party code into the bundle.
-But you control the HTML, so you can simply include a CDN link for most libraries from something like [cdnjs.com](https://cdnjs.com/) or (unpkg)(https://unpkg.com)
+But you control the HTML, so you can simply include a CDN link for most libraries from something like [cdnjs.com](https://cdnjs.com/) or [unpkg.com](https://unpkg.com)
 
 ## What about vue
 
