@@ -16,6 +16,13 @@ _When you could live with a single html, css, and js file, but you still want mi
 
 I just want less, and for really small things I can get away with it. Plus it's fast :)
 
+
+## is it just webpack boilerplate?
+
+No. While I think webpack is an obvious choice for many projects. this is less ambitious and focuses on smaller use-cases.
+
+If you are interested in a nice layer on top of webpack, there already great projects, such as [poi](https://poi.js.org/#/) and [neutrino](https://neutrino.js.org/).
+
 ## how do I use it?
 
 The easiest way is [`npx`](https://www.npmjs.com/package/npx) because it comes with `npm`.
