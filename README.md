@@ -10,6 +10,8 @@ A minimal build and dev tool for really tiny HTML projects, such as:
 * student projects (simple environment that supports es6 and autoprefixing)
 * super small sites (portfolio pages, one-off marketing pages, etc)
 
+Basically, anywhere where you could get away with an single html, css, and js file, but you still want minified and transformed code.
+
 ## why not webpack?
 
 I just want less, and for really small things I can get away with it. Plus its fast :)
