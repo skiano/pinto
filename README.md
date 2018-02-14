@@ -8,7 +8,7 @@ A minimal build and dev tool for really tiny HTML projects, such as:
 
 * quick experiments (easy to build and deploy)
 * student projects (simple environment that supports es6 and autoprefixing)
-* super small sites (portfolio pages, one of marketing pages, etc)
+* super small sites (portfolio pages, one-off marketing pages, etc)
 
 ## why not webpack?
 
