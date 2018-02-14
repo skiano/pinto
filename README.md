@@ -69,5 +69,5 @@ On the other hand, if your concern is creating a totally isolated page (archival
 ## what else?
 
 * [What exactly does scaffolding create?](docs/SCAFFOLDING.md)
-* [How can I customize the buble and postcss configuration?](docs/SCAFFOLDING.md)
+* [What configuration options do I have?](docs/SCAFFOLDING.md)
 * [What about jsx?](docs/SCAFFOLDING.md)
