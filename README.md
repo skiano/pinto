@@ -19,9 +19,9 @@ I just want less, and for really small things I can get away with it. Plus it's 
 
 ## is it just webpack boilerplate?
 
-No. While I think webpack is an obvious choice for many projects. this is less ambitious and focuses on smaller use-cases.
+No. While I think webpack is an obvious choice for many projects. this is less ambitious and focuses on smaller use-cases. I tried to [keep the dependencies very lean](https://github.com/skiano/pinto/blob/master/package.json)
 
-If you are interested in a nice layer on top of webpack, there already great projects, such as [poi](https://poi.js.org/#/) and [neutrino](https://neutrino.js.org/).
+If you are interested in a nice layer on top of webpack, there are already great projects, such as [poi](https://poi.js.org/#/) and [neutrino](https://neutrino.js.org/) you could use.
 
 ## how do I use it?
 
