@@ -51,7 +51,7 @@ Pinto creates a completely static html page from the following:
 The HTML is treated as a mustache template, which recieves
 the template data and the transformed css and js.
 
-[what does scaffolding create?](docs/SCAFFOLDING.md)
+[what exactly does scaffolding create?](docs/SCAFFOLDING.md)
 
 ## What about 3rd party code?
 
