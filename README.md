@@ -1,6 +1,6 @@
 # pinto
 
-[![npm version](https://badge.fury.io/js/pinto.svg)](https://badge.fury.io/js/pinto)
+[![npm version](https://badge.fury.io/js/pinto.svg)](https://badge.fury.io/js/pinto) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 ## what is it?
 
