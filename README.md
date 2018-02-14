@@ -14,7 +14,7 @@ Basically, anywhere where you could get away with an single html, css, and js fi
 
 ## why not webpack?
 
-I just want less, and for really small things I can get away with it. Plus its fast :)
+I just want less, and for really small things I can get away with it. Plus it's fast :)
 
 ## how do I use it?
 
