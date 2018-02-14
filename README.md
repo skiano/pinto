@@ -51,9 +51,9 @@ Pinto creates a completely static html page from the following:
 The HTML is treated as a mustache template, which recieves
 the template data and the transformed css and js.
 
-[what exactly does scaffolding create?](docs/SCAFFOLDING.md)
+[What exactly does scaffolding create?](docs/SCAFFOLDING.md)
 
-## What about 3rd party code?
+## what about 3rd party code?
 
 Because you are limited to one JS file, you cannot import any 3rd party code into the bundle.
 But you control the HTML, so you can simply include a CDN link for most libraries (see [cdnjs.com](https://cdnjs.com/) or [unpkg.com](https://unpkg.com)).
@@ -62,4 +62,4 @@ If you need something more sophisticated, you probably want a more sophisticated
 
 On the other hand, if your concern is creating a totally isolated page (archival), consider copying the vendor code to your static folder and loading it via a script tag. (static folders are not supprted yet. see #2)
 
-## What about jsx...
+## what about jsx...
