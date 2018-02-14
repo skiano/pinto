@@ -98,3 +98,9 @@ And `npx pinto build` would create a new file `dist/index.html` that looks like:
 ```html
 <!DOCTYPE html> <html> <head> <title>My super cool page!</title> <style type="text/css">body{border:1px solid red}</style> </head> <body> <h1>Howdy</h1> <script type="text/javascript">var hello=function(){return"hello"};console.log(hello());</script> </body> </html>
 ```
+
+## What about 3rd party code?
+
+## What about vue
+
+## What about react
