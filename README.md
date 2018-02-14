@@ -6,11 +6,11 @@
 
 A minimal build and dev tool for really tiny HTML projects.
 
-It’s somewhere between a JS fiddle and a mini static site generator.
+It may be a good fit for students, simple experiments, or small sites like portfolios.
 
 ## why not webpack?
 
-I just want less, and for really small things I can get away with it.
+I just want less, and for really small things I can get away with it. Plus its fast :)
 
 ## how do I use it?
 
@@ -100,6 +100,9 @@ And `npx pinto build` would create a new file `dist/index.html` that looks like:
 ```
 
 ## What about 3rd party code?
+
+Because you are limited to one JS file, you cannot import any 3rd party code into the bundle.
+But you control the HTML, so you can simply include a CDN link for most libraries from something like [cdnjs.com](https://cdnjs.com/) or (unpkg)(https://unpkg.com)
 
 ## What about vue
 
