@@ -60,6 +60,6 @@ But you control the HTML, so you can simply include a CDN link for most librarie
 
 If you need something more sophisticated, you probably want a more sophisticated tool, such as webpack or parcel.
 
-On the other hand, if your concern is creating a totally isolated page (archival), consider copying the vendor code to your static folder and loading it via a script tag. (static folders are not supprted yet. see #2)
+On the other hand, if your concern is creating a totally isolated page (archival), consider copying the vendor code to your static folder and loading it via a script tag. (static folders are not supprted yet. [see #2](https://github.com/skiano/pinto/issues/2))
 
 ## what about jsx...
