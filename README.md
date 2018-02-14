@@ -14,7 +14,7 @@ _When you could live with a single html, css, and js file, but you still want mi
 
 ## is it just webpack boilerplate?
 
-No. While I think webpack is an obvious choice for many projects. this is less ambitious and focuses on smaller use-cases. I tried to [keep the dependencies very lean](https://github.com/skiano/pinto/blob/master/package.json)
+No. While I think webpack is an obvious choice for many projects, this is less ambitious and focuses on smaller use-cases. I tried to [keep the dependencies very lean](https://github.com/skiano/pinto/blob/master/package.json)
 
 If you are interested in a nice layer on top of webpack, there are already great projects, such as [poi](https://poi.js.org/#/) and [neutrino](https://neutrino.js.org/) you could use.
 
