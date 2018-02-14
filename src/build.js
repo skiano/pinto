@@ -2,7 +2,7 @@ const chalk = require('chalk')
 const transformJS = require('./transformJS')
 const transformCSS = require('./transformCSS')
 const transformHTML = require('./transformHTML')
-const { loadConfig, transformFile, forceWriteFile } = require('./util')
+const { loadConfig, transformFile, forceWriteFile, createTemplateData } = require('./util')
 
 const build = () => {
   const config = loadConfig()
@@ -14,7 +14,7 @@ const build = () => {
     transformFile(config.src.css, transformCSS),
     transformFile(config.src.js, transformJS),
   ]).then(([html, data, css, js]) => (
-    forceWriteFile(config.output, transformHTML(html, { data, css, js}))
+    forceWriteFile(config.output, transformHTML(html, createTemplateData(css, js, data)))
   )).then(() => {
     console.log('built', chalk.cyan(`${new Date() - start}ms`))
   }).catch(err => {

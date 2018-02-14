@@ -6,19 +6,21 @@ const ConvertAnsi = require('ansi-to-html')
 const transformJS = require('./transformJS')
 const transformCSS = require('./transformCSS')
 const transformHTML = require('./transformHTML')
-const { loadConfig, transformFile } = require('./util')
+const { loadConfig, transformFile, createTemplateData } = require('./util')
 
 const convertAnsi = new ConvertAnsi();
 
 const PAGE = {
   error: undefined,
   html: '',
-  data: { data: {}, css: '', js: '' },
+  css: '',
+  js: '',
+  data: {},
 }
 const updateHTML = f => transformFile(f).then(html => PAGE.html = html)
-const updateDATA = f => transformFile(f, JSON.parse).then(data => PAGE.data.data = data)
-const updateCSS = f => transformFile(f, transformCSS).then(css => PAGE.data.css = css)
-const updateJS = f => transformFile(f, transformJS).then(js => PAGE.data.js = js)
+const updateDATA = f => transformFile(f, JSON.parse).then(data => PAGE.data = data)
+const updateCSS = f => transformFile(f, transformCSS).then(css => PAGE.css = css)
+const updateJS = f => transformFile(f, transformJS).then(js => PAGE.js = js)
 
 const createServer = (config) => {
   const app = connect()
@@ -31,7 +33,7 @@ const createServer = (config) => {
       // TODO handle different errors in a more helpful way
       res.write(`<pre>BUILD ERROR\n${convertAnsi.toHtml(PAGE.error.message)}\n${convertAnsi.toHtml(PAGE.error.stack)}</pre>`)
     } else {
-      res.write(transformHTML(PAGE.html, PAGE.data))
+      res.write(transformHTML(PAGE.html, createTemplateData(PAGE.css, PAGE.js, PAGE.data)))
     }
 
     res.end()
