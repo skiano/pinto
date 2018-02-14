@@ -1,4 +1,4 @@
-#what does scaffolding create?
+# what does scaffolding create?
 
 Scaffolding your project will create something like the following
 
