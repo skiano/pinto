@@ -4,11 +4,11 @@
 
 ## what is it?
 
-A minimal build and dev tool for really tiny HTML projects, such as:
+A minimal tool for developing super tiny HTML projects, such as:
 
-* quick experiments or prototypes (easy to build and deploy)
-* student projects (simple environment that supports es6 and autoprefixing)
-* super small sites (portfolio pages, one-off marketing pages, etc)
+* quick experiments and prototypes _— it’s easy to build and deploy_
+* student projects _— the environment is simple, but supports es6 and autoprefixing_
+* super small sites _— single-page portfolio or marketing pages, etc_
 
 Basically, anywhere where you could get away with an single html, css, and js file, but you still want minified and transformed code.
 
