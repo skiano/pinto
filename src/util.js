@@ -1,7 +1,6 @@
 const fs = require('fs-extra')
 const path = require('path')
 const minimist = require('minimist')
-const deepmerge = require('deepmerge')
 
 const argv = minimist(process.argv.slice(2), {
   alias: { o: 'optimize' },
