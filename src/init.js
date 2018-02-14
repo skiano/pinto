@@ -31,7 +31,10 @@ const stubJS = (config) => (
 )
 
 const stubConfiguration = (config) => (
-  forceWriteFile(fromRoot(`${configFile}.json`), JSON.stringify(config, null, 2))
+  forceWriteFile(
+    fromRoot(`${configFile}.json`), JSON.stringify(config, null, 2),
+    true
+  )
 )
 
 const init = () => (

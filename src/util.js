@@ -61,10 +61,16 @@ exports.transformFile = (file, transformer = i => i, optimize) => (
   fs.readFile(file).then((c) => transformer(c.toString(), optimize))
 )
 
-exports.forceWriteFile = (file, content) => (
-  fs.ensureFile(file).then(() => (
-    fs.writeFile(file, content)
-  ))
+exports.forceWriteFile = (file, content, overwrite = false) => (
+  fs.exists(file).then((exists) => {
+    const shouldWrite = !exists || overwrite
+    if (!shouldWrite) {
+      console.log(`skipping write: ${file}`)
+    }
+    return shouldWrite && fs.ensureFile(file).then(() => (
+      fs.writeFile(file, content)
+    ))
+  })
 )
 
 exports.createTemplateData = (css, js, data) => (Object.assign({
