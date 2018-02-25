@@ -6,7 +6,7 @@
     "pinto": "bin/pinto.js"
   },
   "scripts": {
-    "test": "tape test/**/*.js",
+    "test": "tape test/**/*.js | tap-spec",
     "release": "standard-version && git push --follow-tags origin master && npm publish"
   },
   "repository": {
