@@ -34,6 +34,7 @@ exports.createConfig = (config) => ({
   dist: "dist",
   output: "index.html",
   src: {
+    static: "static",
     data: config.useData ? "data.json" : null,
     html: "index.html",
     css: "index.css",
@@ -48,6 +49,8 @@ exports.loadConfig = () => {
   c.srcFolder = exports.fromRoot('src')
   c.output = path.resolve(c.dist, c.output)
 
+  c.staticRoute = c.src.static
+  c.src.static = exports.fromSrc(c.src.static)
   c.src.html = exports.fromSrc(c.src.html)
   c.src.css = exports.fromSrc(c.src.css)
   c.src.js = exports.fromSrc(c.src.js)

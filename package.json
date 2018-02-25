@@ -39,6 +39,7 @@
     "inquirer": "^5.1.0",
     "minimist": "^1.2.0",
     "postcss": "^6.0.17",
+    "serve-static": "^1.13.2",
     "uglify-js": "^3.3.9"
   },
   "devDependencies": {

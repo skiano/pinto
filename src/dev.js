@@ -2,6 +2,7 @@ const fs = require('fs-extra')
 const http = require('http')
 const chalk = require('chalk')
 const connect = require('connect')
+const serveStatic = require('serve-static')
 const ConvertAnsi = require('ansi-to-html')
 const transformJS = require('./transformJS')
 const transformCSS = require('./transformCSS')
@@ -25,6 +26,10 @@ const updateJS = f => transformFile(f, transformJS).then(js => PAGE.js = js)
 const createServer = (config) => {
   const app = connect()
 
+  // serve static assets
+  app.use(`/${config.staticRoute}`, serveStatic(config.src.static))
+
+  // serve rendered page
   app.use((req, res) => {
     res.setHeader('Content-Type', 'text/html')
     res.setHeader('X-Powered-By', 'pinto')
