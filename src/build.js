@@ -22,7 +22,7 @@ const build = () => {
   ]).then(([_, html, data, css, js]) => (
     forceWriteFile(
       config.output,
-      transformHTML(html, createTemplateData(css, js, data)),
+      transformHTML(html, createTemplateData(config, css, js, data)),
       true,
     )
   )).then(() => {

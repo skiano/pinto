@@ -38,7 +38,7 @@ const createServer = (config) => {
       // TODO handle different errors in a more helpful way
       res.write(`<pre>BUILD ERROR\n${convertAnsi.toHtml(PAGE.error.message)}\n${convertAnsi.toHtml(PAGE.error.stack)}</pre>`)
     } else {
-      res.write(transformHTML(PAGE.html, createTemplateData(PAGE.css, PAGE.js, PAGE.data)))
+      res.write(transformHTML(PAGE.html, createTemplateData(config, PAGE.css, PAGE.js, PAGE.data)))
     }
 
     res.end()

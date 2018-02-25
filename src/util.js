@@ -76,8 +76,8 @@ exports.forceWriteFile = (file, content, overwrite = false) => (
   })
 )
 
-exports.createTemplateData = (css, js, data) => (Object.assign({
-  pinto: { css, js },
+exports.createTemplateData = (config, css, js, data) => (Object.assign({
+  pinto: { css, js, static: `./${config.staticRoute}` },
 }, data))
 
 exports.createDefaultHTML = (config) => `<!DOCTYPE html>
@@ -91,6 +91,7 @@ exports.createDefaultHTML = (config) => `<!DOCTYPE html>
   <body>
     <h1>${config.src.data ? '{{heading}}' : 'Hello Pinto'}</h1>
     <script type="text/javascript">{{{pinto.js}}}</script>
+    <img src="{{pinto.static}}/example.svg" alt="example svg!"/>
   </body>
 </html>
 `
