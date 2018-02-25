@@ -34,6 +34,7 @@ exports.createConfig = (config) => ({
   dist: "dist",
   output: "index.html",
   src: {
+    static: "static",
     data: config.useData ? "data.json" : null,
     html: "index.html",
     css: "index.css",
@@ -48,6 +49,8 @@ exports.loadConfig = () => {
   c.srcFolder = exports.fromRoot('src')
   c.output = path.resolve(c.dist, c.output)
 
+  c.staticRoute = c.src.static
+  c.src.static = exports.fromSrc(c.src.static)
   c.src.html = exports.fromSrc(c.src.html)
   c.src.css = exports.fromSrc(c.src.css)
   c.src.js = exports.fromSrc(c.src.js)
@@ -73,8 +76,8 @@ exports.forceWriteFile = (file, content, overwrite = false) => (
   })
 )
 
-exports.createTemplateData = (css, js, data) => (Object.assign({
-  pinto: { css, js },
+exports.createTemplateData = (config, css, js, data) => (Object.assign({
+  pinto: { css, js, static: `./${config.staticRoute}` },
 }, data))
 
 exports.createDefaultHTML = (config) => `<!DOCTYPE html>
@@ -88,6 +91,7 @@ exports.createDefaultHTML = (config) => `<!DOCTYPE html>
   <body>
     <h1>${config.src.data ? '{{heading}}' : 'Hello Pinto'}</h1>
     <script type="text/javascript">{{{pinto.js}}}</script>
+    <img src="{{pinto.static}}/example.svg" alt="example svg!"/>
   </body>
 </html>
 `

@@ -32,6 +32,16 @@ const stubJS = (config) => (
 
 const stubConfiguration = (config) => (
   forceWriteFile(
+    fromSrc(`${config.src.static}/example.svg`), `<svg version="1.1"
+      width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="150" cy="100" r="80" fill="green" />
+    </svg>`,
+    true
+  )
+)
+
+const stubStatic = (config) => (
+  forceWriteFile(
     fromRoot(`${configFile}.json`), JSON.stringify(config, null, 2),
     true
   )
@@ -64,6 +74,7 @@ const init = () => (
       stubHtml(config),
       stubCSS(config),
       stubJS(config),
+      stubStatic(config),
       stubTemplateData(config),
       stubConfiguration(config),
     ])
