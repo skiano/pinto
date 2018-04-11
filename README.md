@@ -21,25 +21,29 @@ If you are interested in a nice layer on top of webpack, there are already great
 
 ## how do I use it?
 
-The easiest way is [`npx`](https://www.npmjs.com/package/npx) because it comes with `npm`.
+```bash
+$ npm install pinto -g # install the cli
+```
+
+Alternatively, consider using [`npx`](https://www.npmjs.com/package/npx) because it comes with `npm`.
 
 ```bash
-$ npx pinto init  # scaffolds the project in current directory
-$ npx pinto dev   # starts a dev server
-$ npx pinto build # builds a static page
+$ pinto init  # scaffolds the project in current directory
+$ pinto dev   # starts a dev server
+$ pinto build # builds a static page
 ```
 
 By default, pinto applies optimizations only on build, but you can override that.
 
 ```bash
-$ npx pinto dev --optimize
-$ npx pinto build --optimize=false
+$ pinto dev --optimize
+$ pinto build --optimize=false
 ```
 
 If you want, you can use the excellent [`now`](https://zeit.co/now) to share your project with the world!
 
 ```
-$ npx pinto build && cd dist && npx now
+$ pinto build && cd dist && npx now
 ```
 
 ## what it does?
