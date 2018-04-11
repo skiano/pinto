@@ -67,6 +67,10 @@ If you need something more sophisticated, you probably want a more sophisticated
 
 On the other hand, if your concern is creating a totally isolated page (archival), consider copying the vendor code to your static folder and loading it via a script tag.
 
+## what about static assets?
+
+When you scaffold the project, a static folder will be created, and you can reference the static assets in your template by using a special pinto variable like so: `{{pinto.static}}/your-file-name.jpg`.
+
 ## what else?
 
 * [What exactly does scaffolding create?](docs/SCAFFOLDING.md)
