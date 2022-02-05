@@ -1,5 +1,5 @@
-const hogan = require('hogan.js')
-const { args } = require('./util')
+const hogan = require('hogan.js');
+const { args } = require('./util');
 
 module.exports = function createHTML(html, data) {
   const template = hogan.compile(html)
@@ -12,5 +12,5 @@ module.exports = function createHTML(html, data) {
     conservativeCollapse: true,
     quoteCharacter: '"',
     removeComments: true,
-  })
-}
+  });
+};
