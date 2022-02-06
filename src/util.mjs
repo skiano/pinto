@@ -1,17 +1,12 @@
 import fs from 'fs-extra';
 import path from 'path';
 
-////////////////////
-// PARSE CLI ARGS //
-////////////////////
+/////////////////////
+// HANDLE CLI ARGS //
+/////////////////////
 
-const [cmd, src, dest] = process.argv.slice(2);
-
-export const args = {
-  command: cmd,
-  source: src,
-  output: dest,
-};
+const [command, source, output] = process.argv.slice(2);
+export const args = { command, source, output };
 
 ///////////////
 // CONSTANTS //
