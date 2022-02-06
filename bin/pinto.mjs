@@ -11,6 +11,8 @@ switch (args.command) {
   case 'init':
     import('../src/init.mjs');
     break;
-  // TODO: add a preview command for convienience...
+  case 'preview':
+    import('../src/preview.mjs');
+    break;
 }
 

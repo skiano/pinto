@@ -12,10 +12,10 @@ export const args = { command, source, output };
 // CONSTANTS //
 ///////////////
 
-export const BASE_DIRECTORY = args.source ? path.resolve(process.cwd(), args.source) : process.cwd();
+export const BASE_DIRECTORY = args.source && path.resolve(process.cwd(), args.source);
 export const ASSETS_DIRECTORY = path.resolve(BASE_DIRECTORY, 'assets');
-export const OUTPUT_DIRECTORY = path.resolve(process.cwd(), args.output);
-export const OUTPUT_ASSETS_DIRECTORY = path.resolve(OUTPUT_DIRECTORY, 'assets');
+export const OUTPUT_DIRECTORY = args.output && path.resolve(process.cwd(), args.output);
+export const OUTPUT_ASSETS_DIRECTORY = OUTPUT_DIRECTORY && path.resolve(OUTPUT_DIRECTORY, 'assets');
 
 export const JS_FILE = path.resolve(BASE_DIRECTORY, 'app.js');
 export const CSS_FILE = path.resolve(BASE_DIRECTORY, 'style.css');
