@@ -76,7 +76,7 @@ const convertAnsi = new AnsiToHtml();
   ////////////////
 
   // create the dev application
-  const app = connect()
+  const app = connect();
 
   // serve static assets
   app.use(`/assets`, serveStatic(ASSETS_DIRECTORY));
@@ -134,6 +134,6 @@ const convertAnsi = new AnsiToHtml();
   // Create the dev server
   const PORT = process.env.PORT || 3000;
   http.createServer(app).listen(PORT, () => {
-    console.log(`Pinto serving:`, chalk.green(`http://localhost:${PORT}`))
+    console.log(`Pinto Dev:`, chalk.green(`http://localhost:${PORT}`));
   });
 })();
