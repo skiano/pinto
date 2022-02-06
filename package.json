@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "release": "standard-version && git push --follow-tags origin master && npm publish"
+    "patch-release": "npm version patch && npm publish && git push --follow-tags",
+    "minor-release": "npm version minor && npm publish && git push --follow-tags",
+    "makor-release": "npm version major && npm publish && git push --follow-tags"
   },
   "repository": {
     "type": "git",
@@ -38,8 +40,5 @@
     "postcss": "8.4.6",
     "serve-static": "1.14.2",
     "terser": "5.10.0"
-  },
-  "devDependencies": {
-    "standard-version": "9.3.2"
   }
 }
