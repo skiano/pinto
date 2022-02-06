@@ -13,6 +13,7 @@ import {
   HTML_FILE,
   JSON_FILE,
   ASSETS_DIRECTORY,
+  LIVERELOAD_SNIPPET,
 } from './util.mjs';
 
 const convertAnsi = new AnsiToHtml();
@@ -34,12 +35,10 @@ const convertAnsi = new AnsiToHtml();
     [JS_FILE]: () => readFile(JS_FILE).then(o => STATE.js = o),
     [CSS_FILE]: () => readFile(CSS_FILE).then(o => STATE.css = o),
     [JSON_FILE]: () => readFile(JSON_FILE).then(o => STATE.data = JSON.parse(o)),
-    [HTML_FILE]: () => readFile(HTML_FILE).then(o => { 
-      // console.log(Handlebars.compile(o)({ title: 'hello there' }));
-      STATE.html = Handlebars.compile(o)
-    }),
+    [HTML_FILE]: () => readFile(HTML_FILE).then(o => STATE.html = Handlebars.compile(o)),
   };
 
+  const livereloadListeners = [];
   const watcher = chokidar.watch(Object.keys(TRANSFORMS));
 
   watcher.on('ready', () => {
@@ -52,7 +51,10 @@ const convertAnsi = new AnsiToHtml();
   
         // update in memory version
         await TRANSFORMS[file]();
-  
+
+        // update browser
+        livereloadListeners.forEach(l => l('update', file));
+
         // report on time
         console.log('updated', chalk.cyan(`${Date.now() - start}ms`));
       } catch (e) {
@@ -62,19 +64,19 @@ const convertAnsi = new AnsiToHtml();
     });
   });
 
-  // Initial transforms...
+  // initialize the state
   try {
     await Promise.all(Object.values(TRANSFORMS).map(f => f()));
   } catch (e) {
     STATE.error = e;
-    console.log(chalk.red('FAILED TO SETUP STATE'));
-    console.error(e);
+    console.log(chalk.red(e));
   }
 
   ////////////////
   // DEV SERVER //
   ////////////////
 
+  // create the dev application
   const app = connect()
 
   // serve static assets
@@ -89,16 +91,49 @@ const convertAnsi = new AnsiToHtml();
     if (STATE.error) {
       res.write(`<pre>BUILD ERROR\n${convertAnsi.toHtml(STATE.error.message)}\n${convertAnsi.toHtml(STATE.error.stack)}</pre>`);
     } else {
-      console.log('render template');
       res.write(STATE.html({
         ...STATE.data,
         pinto: { css: STATE.css, js: STATE.js },
-      }));
+      }) + LIVERELOAD_SNIPPET);
     }
 
     res.end();
   });
 
+  // livereload
+  app.use('/livereload', (req, res) => {
+    // Open the event stream for livereload
+    res.writeHead(200, {
+      'Connection': 'keep-alive',
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Access-Control-Allow-Origin': '*',
+    });
+
+    // Send an event
+    const sendMessage = (channel, data) => {
+      console.log(`event: ${channel}\nid: 0\ndata: ${data}\n`);
+      res.write(`event: ${channel}\nid: 0\ndata: ${data}\n`);
+      res.write(`\n\n`);
+    };
+
+    // Send a ping event every minute to prevent console errors
+    const ping = setInterval(sendMessage, 60000, 'status', 'ping');
+
+    // Send an initial ack event to stop request pending
+    sendMessage('status', 'awaiting change');
+
+    // Subscribe for updates
+    livereloadListeners.push(sendMessage);
+
+    // Cleanup subscription and ping interval when user disconnects
+    res.on('close', () => {
+      livereloadListeners.splice(livereloadListeners.indexOf(sendMessage), 1);
+      clearInterval(ping);
+    });
+  });
+
+  // Create the dev server
   http.createServer(app).listen(args.port, () => {
     console.log(`Pinto serving:`, chalk.green(`http://localhost:${args.port}`))
   });
