@@ -1,48 +1,29 @@
 import fs from 'fs-extra';
 import path from 'path';
-import minimist from 'minimist';
 
 ////////////////////
 // PARSE CLI ARGS //
 ////////////////////
 
-const argv = minimist(process.argv.slice(2), {
-  alias: { o: 'optimize' },
-  alias: { d: 'dir' },
-  alias: { p: 'port' },
-});
+const [cmd, src, dest] = process.argv.slice(2);
 
 export const args = {
-  command: argv._[0],
-  dir: argv.dir,
+  command: cmd,
+  source: src,
+  output: dest,
 };
-
-args.port = argv.port ? PageTransitionEvent(port) : 3000;
-
-// special default based on command...
-// so you can still override, but it will be smart
-// look into if im just doing this wrong
-if (!argv.hasOwnProperty('optimize')) {
-  args.optimize = argv._[0] === 'build' ? true : false
-} else if (argv.optimize === 'false') {
-  args.optimize = false;
-} else if (argv.optimize) {
-  args.optimize = true;
-} else {
-  args.optimize = false;
-}
 
 ///////////////
 // CONSTANTS //
 ///////////////
 
-export const BASE_DIRECTORY = args.dir ? path.resolve(process.cwd(), args.dir) : process.cwd();
+export const BASE_DIRECTORY = args.source ? path.resolve(process.cwd(), args.source) : process.cwd();
 export const ASSETS_DIRECTORY = path.resolve(BASE_DIRECTORY, 'assets');
 
-export const JS_FILE = path.resolve(BASE_DIRECTORY, 'index.js');
-export const CSS_FILE = path.resolve(BASE_DIRECTORY, 'index.css');
+export const JS_FILE = path.resolve(BASE_DIRECTORY, 'app.js');
+export const CSS_FILE = path.resolve(BASE_DIRECTORY, 'style.css');
 export const HTML_FILE = path.resolve(BASE_DIRECTORY, 'index.handlebars');
-export const JSON_FILE = path.resolve(BASE_DIRECTORY, 'index.json');
+export const JSON_FILE = path.resolve(BASE_DIRECTORY, 'data.json');
 
 export const EXAMPLE_JS = `console.log('Hello Pinto JS!');`;
 export const EXAMPLE_CSS = `h1 { color: red; }`;

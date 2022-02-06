@@ -112,7 +112,6 @@ const convertAnsi = new AnsiToHtml();
 
     // Send an event
     const sendMessage = (channel, data) => {
-      console.log(`event: ${channel}\nid: 0\ndata: ${data}\n`);
       res.write(`event: ${channel}\nid: 0\ndata: ${data}\n`);
       res.write(`\n\n`);
     };
@@ -134,7 +133,8 @@ const convertAnsi = new AnsiToHtml();
   });
 
   // Create the dev server
-  http.createServer(app).listen(args.port, () => {
-    console.log(`Pinto serving:`, chalk.green(`http://localhost:${args.port}`))
+  const PORT = process.env.PORT || 3000;
+  http.createServer(app).listen(PORT, () => {
+    console.log(`Pinto serving:`, chalk.green(`http://localhost:${PORT}`))
   });
 })();
