@@ -6,7 +6,6 @@ import AnsiToHtml from 'ansi-to-html';
 import Handlebars from 'handlebars';
 import serveStatic from 'serve-static';
 import {
-  args,
   readFile,
   JS_FILE,
   CSS_FILE,

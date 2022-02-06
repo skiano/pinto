@@ -1,37 +1,48 @@
-console.log('imported build')
+import fs from 'fs-extra';
+import path from 'path';
+import chalk from 'chalk';
+import postcss from 'postcss';
+import cssnano from 'cssnano';
+import Handlebars from 'handlebars';
+import autoprefixer from 'autoprefixer';
+import { minify as minifyHtml } from 'html-minifier';
+import { minify as minifyJs } from "terser";
 
-// const fs = require('fs-extra')
-// const chalk = require('chalk')
-// const transformJS = require('./transformJS')
-// const transformCSS = require('./transformCSS')
-// const transformHTML = require('./transformHTML')
-// const { loadConfig, transformFile, forceWriteFile, createTemplateData } = require('./util.mjs')
+import {
+  readFile,
+  forceWriteFile,
+  JS_FILE,
+  CSS_FILE,
+  HTML_FILE,
+  JSON_FILE,
+  ASSETS_DIRECTORY,
+  OUTPUT_DIRECTORY,
+  OUTPUT_ASSETS_DIRECTORY
+} from './util.mjs';
 
-// const copyStaticFiles = (config) => (
-//   fs.copy(config.src.static, `${config.dist}/${config.staticRoute}`)
-// )
+(async () => {
+  const [js, css, html, json] = await Promise.all([
+    readFile(JS_FILE).then(async (input) => {
+      const { code } = await minifyJs(input, { toplevel: true });
+      return code;
+    }),
+    readFile(CSS_FILE).then(async (input) => {
+      const { css } = await postcss([autoprefixer(), cssnano()]).process(input, { from: CSS_FILE });
+      return css;
+    }),
+    readFile(HTML_FILE).then(Handlebars.compile),
+    readFile(JSON_FILE).then(JSON.parse),
+  ]);
 
-// const build = () => {
-//   const config = loadConfig()
+  const indexHtml = minifyHtml(html({...json, pinto: { css, js }}), {
+    collapseWhitespace: true,
+    conservativeCollapse: true,
+    quoteCharacter: '"',
+    removeComments: true,
+  });
 
-//   const start = new Date()
-//   return Promise.all([
-//     copyStaticFiles(config),
-//     transformFile(config.src.html),
-//     transformFile(config.src.data, JSON.parse),
-//     transformFile(config.src.css, transformCSS),
-//     transformFile(config.src.js, transformJS),
-//   ]).then(([_, html, data, css, js]) => (
-//     forceWriteFile(
-//       config.output,
-//       transformHTML(html, createTemplateData(config, css, js, data)),
-//       true,
-//     )
-//   )).then(() => {
-//     console.log('built', chalk.cyan(`${new Date() - start}ms`))
-//   }).catch(err => {
-//     console.error(err)
-//   })
-// }
-
-// module.exports = build
+  await fs.emptyDir(OUTPUT_DIRECTORY);
+  await fs.copy(ASSETS_DIRECTORY, OUTPUT_ASSETS_DIRECTORY);
+  await forceWriteFile(path.resolve(OUTPUT_DIRECTORY, 'index.html'), indexHtml);
+  console.log(chalk.green(`PINTO BUILD: ${OUTPUT_DIRECTORY}`));
+})();
