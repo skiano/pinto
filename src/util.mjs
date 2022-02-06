@@ -63,6 +63,12 @@ export const EXAMPLE_HTML = `<!DOCTYPE html>
   </body>
 </html>
 `;
+export const LIVERELOAD_SNIPPET = `
+<script type="text/javascript">
+  serverEvents = new EventSource('/livereload');
+  serverEvents.addEventListener('update', () => location.reload());
+</script>
+`;
 
 ////////////////////////
 // MISC FUNCTIONALITY //
