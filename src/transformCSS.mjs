@@ -21,3 +21,7 @@
 //     .process(input, { from: undefined })
 //     .then(({ css }) => css);
 // };
+
+export default async (input) => {
+  return input;
+};

@@ -1,3 +1,5 @@
+import Handlebars from "handlebars";
+
 // const hogan = require('hogan.js');
 // const { args } = require('./util.mjs');
 
@@ -14,3 +16,8 @@
 //     removeComments: true,
 //   });
 // };
+
+export default (html, data) => {
+  const template = Handlebars.compile(html);
+  return template(data);
+};
