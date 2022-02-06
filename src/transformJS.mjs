@@ -8,3 +8,7 @@
 //   if (output.error) throw new Error(output.error)
 //   return output.code
 // }
+
+export default async (input) => {
+  return input;
+};

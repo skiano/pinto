@@ -33,7 +33,7 @@
     "connect": "3.7.0",
     "cssnano": "5.0.16",
     "fs-extra": "10.0.0",
-    "hogan.js": "^3.0.2",
+    "handlebars": "4.7.7",
     "html-minifier": "4.0.0",
     "minimist": "1.2.5",
     "postcss": "8.4.6",

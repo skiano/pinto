@@ -1,5 +1,3 @@
-// const fs = require('fs-extra')
-// const path = require('path')
 import fs from 'fs-extra';
 import path from 'path';
 import minimist from 'minimist';
@@ -11,12 +9,15 @@ import minimist from 'minimist';
 const argv = minimist(process.argv.slice(2), {
   alias: { o: 'optimize' },
   alias: { d: 'dir' },
+  alias: { p: 'port' },
 });
 
 export const args = {
   command: argv._[0],
   dir: argv.dir,
 };
+
+args.port = argv.port ? PageTransitionEvent(port) : 3000;
 
 // special default based on command...
 // so you can still override, but it will be smart
@@ -31,17 +32,22 @@ if (!argv.hasOwnProperty('optimize')) {
   args.optimize = false;
 }
 
-
-////////////////
-// PATH STUFF //
-////////////////
+///////////////
+// CONSTANTS //
+///////////////
 
 export const BASE_DIRECTORY = args.dir ? path.resolve(process.cwd(), args.dir) : process.cwd();
 export const ASSETS_DIRECTORY = path.resolve(BASE_DIRECTORY, 'assets');
+
+export const JS_FILE = path.resolve(BASE_DIRECTORY, 'index.js');
+export const CSS_FILE = path.resolve(BASE_DIRECTORY, 'index.css');
+export const HTML_FILE = path.resolve(BASE_DIRECTORY, 'index.handlebars');
+export const JSON_FILE = path.resolve(BASE_DIRECTORY, 'index.json');
+
 export const EXAMPLE_JS = `console.log('Hello Pinto JS!');`;
 export const EXAMPLE_CSS = `h1 { color: red; }`;
 export const EXAMPLE_SVG = `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg"> <circle cx="150" cy="100" r="80" fill="green" /></svg>`;
-export const EXAMPLE_DATA = { title: 'Hello Pinto' };
+export const EXAMPLE_DATA = { title: 'Hello Pinto', heading: 'Hello Pinto!' };
 export const EXAMPLE_HTML = `<!DOCTYPE html>
 <html>
   <head>
@@ -62,6 +68,8 @@ export const EXAMPLE_HTML = `<!DOCTYPE html>
 // MISC FUNCTIONALITY //
 ////////////////////////
 
+export const readFile = f => fs.promises.readFile(f).then(f => f.toString());
+
 export const forceWriteFile = async (file, content, overwrite = false) => {
   const exists = await fs.exists(file);
   if (!exists || overwrite) {
@@ -71,7 +79,3 @@ export const forceWriteFile = async (file, content, overwrite = false) => {
   }
   console.log(`skipping write: ${file}`);
 };
-
-
-
-
