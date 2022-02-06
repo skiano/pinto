@@ -2,6 +2,7 @@
   "name": "pinto",
   "version": "1.3.0",
   "description": "A dead simple single page build tool",
+  "type": "module",
   "bin": {
     "pinto": "bin/pinto.js"
   },
@@ -15,9 +16,8 @@
   },
   "keywords": [
     "build",
-    "javascript",
-    "scss",
-    "buble"
+    "single-page",
+    "simple"
   ],
   "author": "Greg Skiano",
   "license": "MIT",
