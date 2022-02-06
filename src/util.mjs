@@ -14,16 +14,39 @@ export const args = { command, source, output };
 
 export const BASE_DIRECTORY = args.source ? path.resolve(process.cwd(), args.source) : process.cwd();
 export const ASSETS_DIRECTORY = path.resolve(BASE_DIRECTORY, 'assets');
+export const OUTPUT_DIRECTORY = path.resolve(process.cwd(), args.output);
+export const OUTPUT_ASSETS_DIRECTORY = path.resolve(OUTPUT_DIRECTORY, 'assets');
 
 export const JS_FILE = path.resolve(BASE_DIRECTORY, 'app.js');
 export const CSS_FILE = path.resolve(BASE_DIRECTORY, 'style.css');
 export const HTML_FILE = path.resolve(BASE_DIRECTORY, 'index.handlebars');
 export const JSON_FILE = path.resolve(BASE_DIRECTORY, 'data.json');
 
-export const EXAMPLE_JS = `console.log('Hello Pinto JS!');`;
-export const EXAMPLE_CSS = `h1 { color: red; }`;
 export const EXAMPLE_SVG = `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg"> <circle cx="150" cy="100" r="80" fill="green" /></svg>`;
 export const EXAMPLE_DATA = { title: 'Hello Pinto', heading: 'Hello Pinto!' };
+export const EXAMPLE_JS = `
+console.log('Hello Pinto JS!');
+
+const dot = document.getElementById('dot');
+
+setInterval(() => {
+  dot.style.visibility = dot.style.visibility === 'hidden' ? 'visible' : 'hidden';
+}, 500);
+`;
+export const EXAMPLE_CSS = `
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 85vh;
+}
+
+h1 {
+  color: red;
+  font-style: italic;
+}
+`;
 export const EXAMPLE_HTML = `<!DOCTYPE html>
 <html>
   <head>
@@ -34,7 +57,7 @@ export const EXAMPLE_HTML = `<!DOCTYPE html>
   </head>
   <body>
     <h1>{{ heading }}</h1>
-    <img src="assets/example.svg" alt="example svg!"/>
+    <img id="dot" src="assets/example.svg" alt="example svg!"/>
     <script type="text/javascript">{{{ pinto.js }}}</script>
   </body>
 </html>
