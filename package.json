@@ -35,7 +35,6 @@
     "fs-extra": "10.0.0",
     "handlebars": "4.7.7",
     "html-minifier": "4.0.0",
-    "minimist": "1.2.5",
     "postcss": "8.4.6",
     "serve-static": "1.14.2",
     "uglify-js": "3.15.0"
